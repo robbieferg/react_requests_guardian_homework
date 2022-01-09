@@ -4,16 +4,11 @@ import CategorySelector from "../components/CategorySelector";
 
 const ArticleContainer = () => {
     const [articles, setArticles] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
+
 
     useEffect(() => {
         getArticles();
     }, []);
-
-    useEffect(() => {
-        getCategories(articles);
-    }, [articles])
 
     const getArticles = () => {
         fetch("https://content.guardianapis.com/search?q=brexit&format=json&api-key=test")
@@ -21,20 +16,16 @@ const ArticleContainer = () => {
         .then(data => setArticles(data["response"]["results"]));
     };
 
-    const getCategories = (articles) => {
-        const categories = articles.map((article) => article["sectionName"]);
-        setCategories(categories);
-    };
+   
 
     const onCategorySelected = (category) => {
-        setSelectedCategory(category);
         const filteredArticles = articles.filter(article => article["sectionName"] === category);
         setArticles(filteredArticles);
     };
 
     return (
         <>
-            <CategorySelector categories={categories} onCategorySelected={onCategorySelected}/>
+            <CategorySelector articles={articles} onCategorySelected={onCategorySelected}/>
             <ArticleList articles={articles} />
         </>
     )
