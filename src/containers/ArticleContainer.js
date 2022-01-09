@@ -28,7 +28,7 @@ const ArticleContainer = () => {
 
     const onCategorySelected = (category) => {
         setSelectedCategory(category);
-        const filteredArticles = articles.map((article) => article["sectionName"] === category);
+        const filteredArticles = articles.filter(article => article["sectionName"] === category);
         setArticles(filteredArticles);
     };
 
