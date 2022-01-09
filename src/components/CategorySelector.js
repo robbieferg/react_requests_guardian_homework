@@ -17,7 +17,7 @@ const CategorySelector = ({articles, onCategorySelected}) => {
     const optionList = categoryOptions.map((category, index) => <option value={index} key={index}>{category}</option>)
 
     const handleChange = (event) => {
-      const chosenCategory = optionList[event.target.value];
+      const chosenCategory = categoryOptions[event.target.value];
       onCategorySelected(chosenCategory);  
     };
 
