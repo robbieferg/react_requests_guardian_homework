@@ -1,9 +1,23 @@
 const CategorySelector = ({articles, onCategorySelected}) => {
     
-    const categoryOptions = articles.map((article, index) => <option value={index} key={index}>{article["sectionName"]}</option>)
+    const categories = articles.map((article, index) => article["sectionName"]);
+
+    const getUniqueCategories = (categories) => {
+        const uniqueList = [];
+        for (const category of categories) {
+            if (!uniqueList.includes(category)) {
+                uniqueList.push(category);
+            }
+        }
+        return uniqueList;
+    };
+
+    const categoryOptions = getUniqueCategories(categories);
+
+    const optionList = categoryOptions.map((category, index) => <option value={index} key={index}>{category}</option>)
 
     const handleChange = (event) => {
-      const chosenCategory = articles[event.target.value]["sectionName"];
+      const chosenCategory = optionList[event.target.value];
       onCategorySelected(chosenCategory);  
     };
 
@@ -12,7 +26,7 @@ const CategorySelector = ({articles, onCategorySelected}) => {
     return (
         <select defaultValue="" onChange={handleChange}>
             <option value="">Select a Category</option>
-            {categoryOptions}
+            {optionList}
         </select>
     );
 };
