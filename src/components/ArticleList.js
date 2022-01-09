@@ -1,4 +1,4 @@
-
+import ArticleItem from "./ArticleItem";
 
 const ArticleList = ({articles}) => {
     const articleItems = articles.map((article, index) => {
