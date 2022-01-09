@@ -4,11 +4,16 @@ import CategorySelector from "../components/CategorySelector";
 
 const ArticleContainer = () => {
     const [articles, setArticles] = useState([]);
+    const [displayedArticles, setDisplayedArticles] = useState([]);
 
 
     useEffect(() => {
         getArticles();
     }, []);
+
+    useEffect(() => {
+        setDisplayedArticles(articles);
+    }, [articles]);
 
     const getArticles = () => {
         fetch("https://content.guardianapis.com/search?q=brexit&format=json&api-key=test")
@@ -20,13 +25,13 @@ const ArticleContainer = () => {
 
     const onCategorySelected = (category) => {
         const filteredArticles = articles.filter(article => article["sectionName"] === category);
-        setArticles(filteredArticles);
+        setDisplayedArticles(filteredArticles);
     };
 
     return (
         <>
             <CategorySelector articles={articles} onCategorySelected={onCategorySelected}/>
-            <ArticleList articles={articles} />
+            <ArticleList displayedArticles={displayedArticles} />
         </>
     )
 };

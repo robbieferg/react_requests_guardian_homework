@@ -1,7 +1,7 @@
 import ArticleItem from "./ArticleItem";
 
-const ArticleList = ({articles}) => {
-    const articleItems = articles.map((article, index) => {
+const ArticleList = ({displayedArticles}) => {
+    const articleItems = displayedArticles.map((article, index) => {
         return <ArticleItem article={article} key={index}/>
     });
 
