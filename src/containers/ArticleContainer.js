@@ -16,7 +16,7 @@ const ArticleContainer = () => {
 
     return (
         <>
-            <ArticleList />
+            <ArticleList articles={articles} />
         </>
     )
 };

@@ -6,9 +6,11 @@ const ArticleList = ({articles}) => {
     });
 
     return (
+        <div>
         <ul>
             {articleItems}
         </ul>
+        </div>
     )
 }
 
